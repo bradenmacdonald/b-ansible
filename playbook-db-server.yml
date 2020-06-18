@@ -1,0 +1,16 @@
+---
+# A playbook that deploys PostgreSQL and Redis onto a single Ubuntu 20.04 LTS Virtual Machine
+# Meant to be accessible via a private network only
+#
+# You can run this playbook with:
+#    ansible-playbook -i 123.123.123.123, -e "deployment_name=prod" playbook-db-server.yml
+- hosts: all
+  remote_user: root
+  vars:
+    deploy_private_dir: "./private/{{deployment_name}}/"
+    common_server_hostname: "{{deployment_name}}"
+  vars_files:
+    - "{{deploy_private_dir}}/vars.yml"
+  roles:
+    - { role: b-database }
+    - { role: b-redis }
