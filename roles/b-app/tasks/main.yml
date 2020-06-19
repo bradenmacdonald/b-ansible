@@ -49,5 +49,4 @@
 - name: Enable the {{app_container_name}} Docker service
   docker_compose:
     project_src: "{{app_environ_dir}}"
-    project_name: "{{app_container_name}}"
     state: present
